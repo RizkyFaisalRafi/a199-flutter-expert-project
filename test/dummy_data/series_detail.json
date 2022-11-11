@@ -1,0 +1,68 @@
+{
+  "adult": false,
+  "backdrop_path": "",
+  "created_by": [],
+  "episode_run_time": [
+    25
+  ],
+  "first_air_date": "",
+  "genres": [],
+  "homepage": "",
+  "id": 1234,
+  "in_production": false,
+  "languages": [
+    "en"
+  ],
+  "last_air_date": "",
+  "last_episode_to_air": "",
+  "name": "Clapperboard",
+  "next_episode_to_air": "",
+  "networks": [
+    {
+      "name": "ITV",
+      "id": 9,
+      "logo_path": "/5Rmw4ViYcjW14PCdOyjsue9eK99.png",
+      "origin_country": "GB"
+    }
+  ],
+  "number_of_episodes": 0,
+  "number_of_seasons": 1,
+  "origin_country": [
+    "GB"
+  ],
+  "original_language": "en",
+  "original_name": "Clapperboard",
+  "overview": "Clapperboard is the name of a 1970s children's television programme, hosted by Chris Kelly which covered the cinema. The show was made by Granada Television for the ITV network, and lasted 254 episodes. It was produced by Muriel Young and was broadcast between April 1972 and January 1982. Young herself fronted the show on occasions when Kelly was unavailable.",
+  "popularity": 0.6,
+  "poster_path": "",
+  "production_companies": [],
+  "production_countries": [
+    {
+      "iso_3166_1": "GB",
+      "name": "United Kingdom"
+    }
+  ],
+  "seasons": [
+    {
+      "air_date": null,
+      "episode_count": 0,
+      "id": 86643,
+      "name": "Season 1",
+      "overview": "",
+      "poster_path": null,
+      "season_number": 1
+    }
+  ],
+  "spoken_languages": [
+    {
+      "english_name": "English",
+      "iso_639_1": "en",
+      "name": "English"
+    }
+  ],
+  "status": "Ended",
+  "tagline": "",
+  "type": "Scripted",
+  "vote_average": 8.5,
+  "vote_count": 1
+}
