@@ -51,7 +51,8 @@ class TvSeriesDetailResponse extends Equatable {
         overview: overview,
         originalName: originalName,
         voteAverage: voteAverage,
-        id: id);
+        id: id,
+        runtime: 0);
   }
 
   @override

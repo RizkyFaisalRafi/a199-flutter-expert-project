@@ -8,6 +8,7 @@ class TvSeriesDetail extends Equatable {
   final String overview;
   final String originalName;
   final double voteAverage;
+  final int runtime;
   final int id;
 
   TvSeriesDetail(
@@ -17,6 +18,7 @@ class TvSeriesDetail extends Equatable {
       required this.overview,
       required this.originalName,
       required this.voteAverage,
+      required this.runtime,
       required this.id});
 
   @override

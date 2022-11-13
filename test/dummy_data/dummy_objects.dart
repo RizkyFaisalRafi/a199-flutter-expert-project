@@ -47,7 +47,7 @@ final testSeriesDetail = TvSeriesDetail(
     overview: '',
     originalName: '',
     voteAverage: 0.0,
-    id: 1);
+    id: 1, runtime: 0);
 
 final testWatchlistMovie = Movie.watchlist(
   id: 1,

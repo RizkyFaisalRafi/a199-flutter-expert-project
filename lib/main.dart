@@ -4,11 +4,13 @@ import 'package:ditonton/injection.dart' as di;
 import 'package:ditonton/presentation/pages/about_page.dart';
 import 'package:ditonton/presentation/pages/movie/home_movie_page.dart';
 import 'package:ditonton/presentation/pages/movie/movie_detail_page.dart';
+import 'package:ditonton/presentation/pages/movie/now_playing_movies_page.dart';
 import 'package:ditonton/presentation/pages/movie/popular_movies_page.dart';
 import 'package:ditonton/presentation/pages/movie/search_movie_page.dart';
 import 'package:ditonton/presentation/pages/movie/top_rated_movies_page.dart';
 import 'package:ditonton/presentation/pages/movie/watchlist_movies_page.dart';
 import 'package:ditonton/presentation/pages/tv/home_series_page.dart';
+import 'package:ditonton/presentation/pages/tv/now_playing_series_page.dart';
 import 'package:ditonton/presentation/pages/tv/popular_series_page.dart';
 import 'package:ditonton/presentation/pages/tv/search_series_page.dart';
 import 'package:ditonton/presentation/pages/tv/series_detail_page.dart';
@@ -17,9 +19,11 @@ import 'package:ditonton/presentation/pages/tv/watchlist_series_page.dart';
 import 'package:ditonton/presentation/provider/movies/movie_detail_notifier.dart';
 import 'package:ditonton/presentation/provider/movies/movie_list_notifier.dart';
 import 'package:ditonton/presentation/provider/movies/movie_search_notifier.dart';
+import 'package:ditonton/presentation/provider/movies/now_playing_movies_notifier.dart';
 import 'package:ditonton/presentation/provider/movies/popular_movies_notifier.dart';
 import 'package:ditonton/presentation/provider/movies/top_rated_movies_notifier.dart';
 import 'package:ditonton/presentation/provider/movies/watchlist_movie_notifier.dart';
+import 'package:ditonton/presentation/provider/tv/now_playing_series_notifier.dart';
 import 'package:ditonton/presentation/provider/tv/popular_series_notifier.dart';
 import 'package:ditonton/presentation/provider/tv/series_detail_notifier.dart';
 import 'package:ditonton/presentation/provider/tv/series_search_notifier.dart';
@@ -58,12 +62,17 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider(
           create: (_) => di.locator<WatchlistMovieNotifier>(),
         ),
-        // ADD
+        ChangeNotifierProvider(
+          create: (_) => di.locator<NowPlayingMoviesNotifier>(),
+        ),
         ChangeNotifierProvider(
           create: (_) => di.locator<TvSeriesNotifier>(),
         ),
         ChangeNotifierProvider(
           create: (_) => di.locator<SeriesSearchNotifier>(),
+        ),
+        ChangeNotifierProvider(
+          create: (_) => di.locator<NowPlayingSeriesNotifier>(),
         ),
         ChangeNotifierProvider(
           create: (_) => di.locator<PopularSeriesNotifier>(),
@@ -92,6 +101,8 @@ class MyApp extends StatelessWidget {
           switch (settings.name) {
             case HomeMoviePage.ROUTE_NAME:
               return MaterialPageRoute(builder: (_) => HomeMoviePage());
+            case NowPlayingMoviesPage.ROUTE_NAME:
+              return CupertinoPageRoute(builder: (_) => NowPlayingMoviesPage());
             case PopularMoviesPage.ROUTE_NAME:
               return CupertinoPageRoute(builder: (_) => PopularMoviesPage());
             case TopRatedMoviesPage.ROUTE_NAME:
@@ -110,6 +121,7 @@ class MyApp extends StatelessWidget {
               return MaterialPageRoute(builder: (_) => AboutPage());
             case HomeSeriesPage.ROUTE_NAME:
               return MaterialPageRoute(builder: (_) => HomeSeriesPage());
+
             case SeriesDetailPage.ROUTE_NAME:
               final id = settings.arguments as int;
               return MaterialPageRoute(
@@ -118,6 +130,8 @@ class MyApp extends StatelessWidget {
               );
             case SearchSeriesPage.ROUTE_NAME:
               return CupertinoPageRoute(builder: (_) => SearchSeriesPage());
+            case NowPlayingSeriesPage.ROUTE_NAME:
+              return CupertinoPageRoute(builder: (_) => NowPlayingSeriesPage());
             case PopularSeriesPage.ROUTE_NAME:
               return CupertinoPageRoute(builder: (_) => PopularSeriesPage());
             case TopRatedSeriesPage.ROUTE_NAME:

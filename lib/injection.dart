@@ -28,9 +28,11 @@ import 'package:ditonton/domain/usecases/tv/search_series.dart';
 import 'package:ditonton/presentation/provider/movies/movie_detail_notifier.dart';
 import 'package:ditonton/presentation/provider/movies/movie_list_notifier.dart';
 import 'package:ditonton/presentation/provider/movies/movie_search_notifier.dart';
+import 'package:ditonton/presentation/provider/movies/now_playing_movies_notifier.dart';
 import 'package:ditonton/presentation/provider/movies/popular_movies_notifier.dart';
 import 'package:ditonton/presentation/provider/movies/top_rated_movies_notifier.dart';
 import 'package:ditonton/presentation/provider/movies/watchlist_movie_notifier.dart';
+import 'package:ditonton/presentation/provider/tv/now_playing_series_notifier.dart';
 import 'package:ditonton/presentation/provider/tv/popular_series_notifier.dart';
 import 'package:ditonton/presentation/provider/tv/series_detail_notifier.dart';
 import 'package:ditonton/presentation/provider/tv/series_search_notifier.dart';
@@ -67,6 +69,13 @@ void init() {
       searchMovies: locator(),
     ),
   );
+
+  locator.registerFactory(
+    () => NowPlayingMoviesNotifier(
+      locator(),
+    ),
+  );
+
   locator.registerFactory(
     () => PopularMoviesNotifier(
       locator(),
@@ -95,6 +104,13 @@ void init() {
       searchSeries: locator(),
     ),
   );
+
+  locator.registerFactory(
+    () => NowPlayingSeriesNotifier(
+      locator(),
+    ),
+  );
+
   locator.registerFactory(
     () => PopularSeriesNotifier(
       locator(),
@@ -129,6 +145,7 @@ void init() {
   locator.registerLazySingleton(() => SaveMovieWatchlist(locator()));
   locator.registerLazySingleton(() => RemoveMovieWatchlist(locator()));
   locator.registerLazySingleton(() => GetWatchlistMovies(locator()));
+
   locator.registerLazySingleton(() => GetNowPlayingSeries(locator()));
   locator.registerLazySingleton(() => SearchSeries(locator()));
   locator.registerLazySingleton(() => GetPopularSeries(locator()));

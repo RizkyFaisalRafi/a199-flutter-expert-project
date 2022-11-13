@@ -14,6 +14,8 @@ import 'package:ditonton/presentation/provider/tv/tv_list_notifier.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+import 'now_playing_series_page.dart';
+
 class HomeSeriesPage extends StatefulWidget {
   static const ROUTE_NAME = '/homeSeries';
 
@@ -99,9 +101,11 @@ class _HomeSeriesPageState extends State<HomeSeriesPage> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text(
-                'Now Playing',
-                style: kHeading6,
+              _buildSubHeading(
+                // Now Playing
+                title: 'Now Playing',
+                onTap: () => Navigator.pushNamed(
+                    context, NowPlayingSeriesPage.ROUTE_NAME),
               ),
               Consumer<TvSeriesNotifier>(builder: (context, data, child) {
                 final state = data.nowPlayingState;
@@ -115,6 +119,8 @@ class _HomeSeriesPageState extends State<HomeSeriesPage> {
                   return Text('Failed');
                 }
               }),
+
+              // Popular
               _buildSubHeading(
                 title: 'Popular',
                 onTap: () =>
@@ -132,6 +138,8 @@ class _HomeSeriesPageState extends State<HomeSeriesPage> {
                   return Text('Failed');
                 }
               }),
+
+              // Top Rated
               _buildSubHeading(
                 title: 'Top Rated',
                 onTap: () =>

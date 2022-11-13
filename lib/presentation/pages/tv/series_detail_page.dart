@@ -1,9 +1,9 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:ditonton/common/constants.dart';
-import 'package:ditonton/common/state_enum.dart';
 import 'package:ditonton/domain/entities/genre.dart';
 import 'package:ditonton/domain/entities/series.dart';
 import 'package:ditonton/domain/entities/series_detail.dart';
+import 'package:ditonton/common/state_enum.dart';
 import 'package:ditonton/presentation/provider/tv/series_detail_notifier.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
@@ -157,7 +157,7 @@ class DetailContent extends StatelessWidget {
                               _showGenres(series.genres),
                             ),
                             Text(
-                              _showDuration(series.episodeRunTime[0]),
+                              _showDuration(series.runtime),
                             ),
                             Row(
                               children: [
