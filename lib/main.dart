@@ -34,6 +34,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'common/ssl_pinning/http_ssl_pinning.dart';
 import 'firebase_options.dart';
 
 void main() async {
@@ -41,6 +42,7 @@ void main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
+  await HttpSSLPinning.init();
   di.init();
   runApp(MyApp());
 }
