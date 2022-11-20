@@ -12,6 +12,7 @@ import 'package:ditonton/presentation/pages/movie/watchlist_movies_page.dart';
 import 'package:ditonton/presentation/pages/tv/home_series_page.dart';
 import 'package:ditonton/presentation/pages/tv/watchlist_series_page.dart';
 import 'package:ditonton/presentation/provider/movies/movie_list_notifier.dart';
+import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -89,6 +90,7 @@ class _HomeMoviePageState extends State<HomeMoviePage> {
         actions: [
           IconButton(
             onPressed: () {
+              // FirebaseCrashlytics.instance.crash(); // Test FirebaseCrashlytics
               Navigator.pushNamed(context, SearchMoviePage.ROUTE_NAME);
             },
             icon: Icon(Icons.search),
