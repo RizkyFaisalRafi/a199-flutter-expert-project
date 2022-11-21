@@ -25,6 +25,20 @@ import 'package:ditonton/domain/usecases/tv/get_top_rated_series.dart';
 import 'package:ditonton/domain/usecases/tv/get_watchlist_series_status.dart';
 import 'package:ditonton/domain/usecases/tv/save_watchlist.dart';
 import 'package:ditonton/domain/usecases/tv/search_series.dart';
+import 'package:ditonton/presentation/bloc/movie/detail/detail_movie_bloc.dart';
+import 'package:ditonton/presentation/bloc/movie/now_playing/now_playing_bloc.dart';
+import 'package:ditonton/presentation/bloc/movie/popular/popular_bloc.dart';
+import 'package:ditonton/presentation/bloc/movie/recommendations/recommendation_bloc.dart';
+import 'package:ditonton/presentation/bloc/movie/search/search_bloc.dart';
+import 'package:ditonton/presentation/bloc/movie/top_rated/top_rated_bloc.dart';
+import 'package:ditonton/presentation/bloc/movie/watchlist/watchlist_movie_bloc.dart';
+import 'package:ditonton/presentation/bloc/series/detail/detail_series_bloc.dart';
+import 'package:ditonton/presentation/bloc/series/now_playing/now_playing_series_bloc.dart';
+import 'package:ditonton/presentation/bloc/series/popular/popular_series_bloc.dart';
+import 'package:ditonton/presentation/bloc/series/recommendations/recommendation_series_bloc.dart';
+import 'package:ditonton/presentation/bloc/series/search/search_series_bloc.dart';
+import 'package:ditonton/presentation/bloc/series/top_rated/top_rated_series_bloc.dart';
+import 'package:ditonton/presentation/bloc/series/watchlist/watchlist_series_bloc.dart';
 import 'package:ditonton/presentation/provider/movies/movie_detail_notifier.dart';
 import 'package:ditonton/presentation/provider/movies/movie_list_notifier.dart';
 import 'package:ditonton/presentation/provider/movies/movie_search_notifier.dart';
@@ -40,13 +54,36 @@ import 'package:ditonton/presentation/provider/tv/top_rated_series_notifier.dart
 import 'package:ditonton/presentation/provider/tv/tv_list_notifier.dart';
 import 'package:ditonton/presentation/provider/tv/watchlist_series_notifier.dart';
 import 'package:get_it/get_it.dart';
-import 'package:http/http.dart' as http;
+
+import 'common/ssl_pinning/http_ssl_pinning.dart';
 import 'domain/usecases/tv/get_watchlist_series.dart';
 import 'domain/usecases/tv/remove_watchlist_series.dart';
 
 final locator = GetIt.instance;
 
 void init() {
+  // bloc
+  locator.registerFactory(
+        () => SearchBloc(locator()),
+  );
+  locator.registerFactory(
+        () => SearchSeriesBloc(locator()),
+  );
+  locator.registerFactory(() => PopularBloc(locator()));
+  locator.registerFactory(() => DetailMovieBloc(locator()));
+  locator.registerFactory(() => TopRatedBloc(locator()));
+  locator.registerFactory(() => NowPlayingBloc(locator()));
+  locator.registerFactory(
+          () => WatchListMovieBloc(locator(), locator(), locator(), locator()));
+  locator.registerFactory(() => RecommendationMovieBloc(locator()));
+  locator.registerFactory(() => PopularSeriesBloc(locator()));
+  locator.registerFactory(() => TopRatedSeriesBloc(locator()));
+  locator.registerFactory(() => NowPlayingSeriesBloc(locator()));
+  locator.registerFactory(() => RecommendationSeriesBloc(locator()));
+  locator.registerFactory(() => DetailSeriesBloc(locator()));
+  locator.registerFactory(
+          () => WatchListSeriesBloc(locator(), locator(), locator(), locator()));
+
   // provider
   locator.registerFactory(
     () => MovieListNotifier(
@@ -182,5 +219,6 @@ void init() {
   locator.registerLazySingleton<DatabaseHelper>(() => DatabaseHelper());
 
   // external
-  locator.registerLazySingleton(() => http.Client());
+  // locator.registerLazySingleton(() => http.Client());
+  locator.registerLazySingleton(() => HttpSSLPinning.client);
 }

@@ -14,7 +14,12 @@ import 'package:ditonton/presentation/pages/tv/watchlist_series_page.dart';
 import 'package:ditonton/presentation/provider/movies/movie_list_notifier.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:provider/provider.dart';
+
+import '../../bloc/movie/now_playing/now_playing_bloc.dart';
+import '../../bloc/movie/popular/popular_bloc.dart';
+import '../../bloc/movie/top_rated/top_rated_bloc.dart';
 
 class HomeMoviePage extends StatefulWidget {
   static const ROUTE_NAME = '/homeMovie';
@@ -27,11 +32,11 @@ class _HomeMoviePageState extends State<HomeMoviePage> {
   @override
   void initState() {
     super.initState();
-    Future.microtask(
-        () => Provider.of<MovieListNotifier>(context, listen: false)
-          ..fetchNowPlayingMovies()
-          ..fetchPopularMovies()
-          ..fetchTopRatedMovies());
+    Future.microtask(() {
+      context.read<TopRatedBloc>().add(TopRatedMovie());
+      context.read<NowPlayingBloc>().add(GetNowPlayingMovie());
+      context.read<PopularBloc>().add(GetPopularMovie());
+    });
   }
 
   @override
@@ -109,54 +114,54 @@ class _HomeMoviePageState extends State<HomeMoviePage> {
                 onTap: () => Navigator.pushNamed(
                     context, NowPlayingMoviesPage.ROUTE_NAME),
               ),
-              Consumer<MovieListNotifier>(builder: (context, data, child) {
-                final state = data.nowPlayingState;
-                if (state == RequestState.Loading) {
+
+
+              BlocBuilder<NowPlayingBloc, NowPlayingState>(builder: (context, state) {
+                if (state is NowPlayingLoading) {
                   return Center(
                     child: CircularProgressIndicator(),
                   );
-                } else if (state == RequestState.Loaded) {
-                  return MovieList(data.nowPlayingMovies);
+                } else if (state is NowPlayingHasData) {
+                  return MovieList(state.result);
                 } else {
                   return Text('Failed');
                 }
               }),
               _buildSubHeading(
-                // Popular
                 title: 'Popular',
                 onTap: () =>
                     Navigator.pushNamed(context, PopularMoviesPage.ROUTE_NAME),
               ),
-              Consumer<MovieListNotifier>(builder: (context, data, child) {
-                final state = data.popularMoviesState; // 1
-                if (state == RequestState.Loading) {
+
+              BlocBuilder<PopularBloc, PopularState>(builder: (context, state) {
+                if (state is PopularLoading) {
                   return Center(
                     child: CircularProgressIndicator(),
                   );
-                } else if (state == RequestState.Loaded) {
-                  return MovieList(data.popularMovies); // 2
+                } else if (state is PopularHasData) {
+                  return MovieList(state.result);
                 } else {
                   return Text('Failed');
                 }
               }),
               _buildSubHeading(
-                // Top Rated
                 title: 'Top Rated',
                 onTap: () =>
                     Navigator.pushNamed(context, TopRatedMoviesPage.ROUTE_NAME),
               ),
-              Consumer<MovieListNotifier>(builder: (context, data, child) {
-                final state = data.topRatedMoviesState; // 1
-                if (state == RequestState.Loading) {
+
+              BlocBuilder<TopRatedBloc, TopRatedState>(builder: (context, state) {
+                if (state is TopRatedLoading) {
                   return Center(
                     child: CircularProgressIndicator(),
                   );
-                } else if (state == RequestState.Loaded) {
-                  return MovieList(data.topRatedMovies); // 2
+                } else if (state is TopRatedHasData) {
+                  return MovieList(state.result);
                 } else {
                   return Text('Failed');
                 }
               }),
+
             ],
           ),
         ),

@@ -1,4 +1,6 @@
+import 'package:ditonton/presentation/bloc/series/now_playing/now_playing_series_bloc.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:provider/provider.dart';
 
 import '../../../common/state_enum.dart';
@@ -16,9 +18,10 @@ class _NowPlayingSeriesPageState extends State<NowPlayingSeriesPage> {
   @override
   void initState() {
     super.initState();
-    Future.microtask(() =>
-        Provider.of<NowPlayingSeriesNotifier>(context, listen: false)
-            .fetchNowPlayingSeries());
+    Future.microtask(() => // ubah
+        // Provider.of<NowPlayingSeriesNotifier>(context, listen: false)
+        //     .fetchNowPlayingSeries());
+    context.read<NowPlayingSeriesBloc>().add(GetSeriesNowPlaying()));
   }
 
   @override
@@ -29,28 +32,34 @@ class _NowPlayingSeriesPageState extends State<NowPlayingSeriesPage> {
       ),
       body: Padding(
         padding: const EdgeInsets.all(8.0),
-        child: Consumer<NowPlayingSeriesNotifier>(
-          builder: (context, data, child) {
-            if (data.state == RequestState.Loading) {
+        // ubah
+        child: BlocBuilder<NowPlayingSeriesBloc, NowPlayingSeriesState>(
+          builder: (context, state) {
+            if (state is NowPlayingSeriesLoading) {
               return Center(
                 child: CircularProgressIndicator(),
               );
-            } else if (data.state == RequestState.Loaded) {
+            } else if (state is NowPlayingSeriesHasData) {
               return ListView.builder(
                 itemBuilder: (context, index) {
-                  final series = data.series[index];
+                  final series = state.result[index];
                   return SeriesCard(series);
                 },
-                itemCount: data.series.length,
+                itemCount: state.result.length,
               );
-            } else {
+            } else if(state is NowPlayingSeriesError) {
               return Center(
                 key: Key('error_message'),
-                child: Text(data.message),
+                child: Text(state.message),
+              );
+            }else{
+              return Center(
+                child: Text('Empty Data'),
               );
             }
           },
         ),
+
       ),
     );
   }
