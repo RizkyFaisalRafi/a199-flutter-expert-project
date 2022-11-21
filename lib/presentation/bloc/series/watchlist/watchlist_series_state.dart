@@ -1,19 +1,18 @@
 part of 'watchlist_series_bloc.dart';
 
-
-abstract class WatchListSeriesState extends Equatable{}
+abstract class WatchListSeriesState extends Equatable {}
 
 class WatchListSeriesEmpty extends WatchListSeriesState {
   @override
   List<Object> get props => [];
 }
 
-class WatchListSeriesLoading extends WatchListSeriesState{
+class WatchListSeriesLoading extends WatchListSeriesState {
   @override
   List<Object> get props => [];
 }
 
-class WatchListSeriesError extends WatchListSeriesState{
+class WatchListSeriesError extends WatchListSeriesState {
   final String message;
 
   WatchListSeriesError(this.message);
@@ -22,7 +21,7 @@ class WatchListSeriesError extends WatchListSeriesState{
   List<Object> get props => [message];
 }
 
-class WatchListSeriesHasData extends WatchListSeriesState{
+class WatchListSeriesHasData extends WatchListSeriesState {
   final List<TvSeries> result;
 
   WatchListSeriesHasData(this.result);
@@ -31,7 +30,7 @@ class WatchListSeriesHasData extends WatchListSeriesState{
   List<Object> get props => [result];
 }
 
-class SeriesWatchListAdded extends WatchListSeriesState{
+class SeriesWatchListAdded extends WatchListSeriesState {
   final bool isAdded;
 
   SeriesWatchListAdded(this.isAdded);
@@ -40,7 +39,7 @@ class SeriesWatchListAdded extends WatchListSeriesState{
   List<Object> get props => [isAdded];
 }
 
-class SeriesWatchListMessage extends WatchListSeriesState{
+class SeriesWatchListMessage extends WatchListSeriesState {
   final String message;
 
   SeriesWatchListMessage(this.message);

@@ -1,6 +1,6 @@
 part of 'popular_series_bloc.dart';
 
-abstract class PopularSeriesState extends Equatable{
+abstract class PopularSeriesState extends Equatable {
   const PopularSeriesState();
 
   @override
@@ -9,9 +9,9 @@ abstract class PopularSeriesState extends Equatable{
 
 class PopularSeriesEmpty extends PopularSeriesState {}
 
-class PopularSeriesLoading extends PopularSeriesState{}
+class PopularSeriesLoading extends PopularSeriesState {}
 
-class PopularSeriesError extends PopularSeriesState{
+class PopularSeriesError extends PopularSeriesState {
   final String message;
 
   PopularSeriesError(this.message);
@@ -20,7 +20,7 @@ class PopularSeriesError extends PopularSeriesState{
   List<Object> get props => [message];
 }
 
-class PopularSeriesHasData extends PopularSeriesState{
+class PopularSeriesHasData extends PopularSeriesState {
   final List<TvSeries> result;
 
   PopularSeriesHasData(this.result);

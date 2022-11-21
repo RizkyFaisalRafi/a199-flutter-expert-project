@@ -1,9 +1,6 @@
-import 'package:ditonton/common/state_enum.dart';
-import 'package:ditonton/presentation/provider/tv/top_rated_series_notifier.dart';
 import 'package:ditonton/presentation/widgets/series_card_list.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:provider/provider.dart';
 
 import '../../bloc/series/top_rated/top_rated_series_bloc.dart';
 
@@ -18,8 +15,8 @@ class _TopRatedSeriesPageState extends State<TopRatedSeriesPage> {
   @override
   void initState() {
     super.initState();
-    Future.microtask(() =>
-        context.read<TopRatedSeriesBloc>().add(TopRatedSeries()));
+    Future.microtask(
+        () => context.read<TopRatedSeriesBloc>().add(TopRatedSeries()));
   }
 
   @override
@@ -30,7 +27,6 @@ class _TopRatedSeriesPageState extends State<TopRatedSeriesPage> {
       ),
       body: Padding(
         padding: const EdgeInsets.all(8.0),
-
         child: BlocBuilder<TopRatedSeriesBloc, TopRatedSeriesState>(
           builder: (context, state) {
             if (state is TopRatedSeriesLoading) {
@@ -45,19 +41,18 @@ class _TopRatedSeriesPageState extends State<TopRatedSeriesPage> {
                 },
                 itemCount: state.result.length,
               );
-            } else if(state is TopRatedSeriesError) {
+            } else if (state is TopRatedSeriesError) {
               return Center(
                 key: Key('error_message'),
                 child: Text(state.message),
               );
-            }else{
+            } else {
               return Center(
                 child: Text('Empty Data'),
               );
             }
           },
         ),
-
       ),
     );
   }

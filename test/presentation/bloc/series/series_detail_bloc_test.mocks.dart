@@ -38,6 +38,7 @@ class MockGetSeriesDetail extends _i1.Mock implements _i4.GetSeriesDetail {
   _i2.TvSeriesRepository get repository =>
       (super.noSuchMethod(Invocation.getter(#repository),
           returnValue: _FakeTvSeriesRepository_0()) as _i2.TvSeriesRepository);
+
   @override
   _i5.Future<_i3.Either<_i6.Failure, _i7.TvSeriesDetail>> execute(dynamic id) =>
       (super.noSuchMethod(Invocation.method(#execute, [id]),

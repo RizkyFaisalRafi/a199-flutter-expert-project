@@ -1,14 +1,10 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:ditonton/common/constants.dart';
 import 'package:ditonton/domain/entities/genre.dart';
-import 'package:ditonton/domain/entities/series.dart';
 import 'package:ditonton/domain/entities/series_detail.dart';
-import 'package:ditonton/common/state_enum.dart';
-import 'package:ditonton/presentation/provider/tv/series_detail_notifier.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
-import 'package:provider/provider.dart';
 
 import '../../bloc/series/detail/detail_series_bloc.dart';
 import '../../bloc/series/recommendations/recommendation_series_bloc.dart';
@@ -18,6 +14,7 @@ class SeriesDetailPage extends StatefulWidget {
   static const ROUTE_NAME = '/detailSeries';
 
   final int id;
+
   SeriesDetailPage({required this.id});
 
   @override
@@ -30,22 +27,25 @@ class _SeriesDetailPageState extends State<SeriesDetailPage> {
     super.initState();
     Future.microtask(() {
       context.read<DetailSeriesBloc>().add(GetDetailSeries(widget.id));
-      context.read<WatchListSeriesBloc>().add(GetWatchListSeriesStatus(widget.id));
-      context.read<RecommendationSeriesBloc>().add(SetSeriesRecommendation(widget.id));
+      context
+          .read<WatchListSeriesBloc>()
+          .add(GetWatchListSeriesStatus(widget.id));
+      context
+          .read<RecommendationSeriesBloc>()
+          .add(SetSeriesRecommendation(widget.id));
     });
   }
 
   @override
   Widget build(BuildContext context) {
     final isAddedToWatchList =
-    context.select<WatchListSeriesBloc, bool>((bloc) {
+        context.select<WatchListSeriesBloc, bool>((bloc) {
       if (bloc.state is SeriesWatchListAdded) {
         return (bloc.state as SeriesWatchListAdded).isAdded;
       }
       return false;
     });
     return Scaffold(
-
       body: BlocBuilder<DetailSeriesBloc, DetailSeriesState>(
         builder: (context, state) {
           if (state is DetailSeriesLoading) {
@@ -56,17 +56,17 @@ class _SeriesDetailPageState extends State<SeriesDetailPage> {
             final series = state.result;
             return SafeArea(
               child: DetailContent(
-                series : series, isAddedWatchlist: isAddedToWatchList,
+                series: series,
+                isAddedWatchlist: isAddedToWatchList,
               ),
             );
-          } else if(state is DetailSeriesError){
+          } else if (state is DetailSeriesError) {
             return Text(state.message);
-          }else{
+          } else {
             return Text('Empty Data');
           }
         },
       ),
-
     );
   }
 }
@@ -88,7 +88,8 @@ class _DetailContentState extends State<DetailContent> {
     return Stack(
       children: [
         CachedNetworkImage(
-          imageUrl: 'https://image.tmdb.org/t/p/w500${widget.series.posterPath}',
+          imageUrl:
+              'https://image.tmdb.org/t/p/w500${widget.series.posterPath}',
           width: screenWidth,
           placeholder: (context, url) => Center(
             child: CircularProgressIndicator(),
@@ -125,24 +126,35 @@ class _DetailContentState extends State<DetailContent> {
                             ElevatedButton(
                               onPressed: () async {
                                 if (!widget.isAddedWatchlist) {
-                                  context.read<WatchListSeriesBloc>().add(AddSeriesToWatchList(widget.series));
+                                  context
+                                      .read<WatchListSeriesBloc>()
+                                      .add(AddSeriesToWatchList(widget.series));
                                 } else {
-                                  context.read<WatchListSeriesBloc>().add(RemoveSeriesFromWatchList(widget.series));
+                                  context.read<WatchListSeriesBloc>().add(
+                                      RemoveSeriesFromWatchList(widget.series));
                                 }
 
-                                final state = BlocProvider.of<WatchListSeriesBloc>(context).state;
+                                final state =
+                                    BlocProvider.of<WatchListSeriesBloc>(
+                                            context)
+                                        .state;
                                 print("cek state $state");
 
                                 String message = "";
 
                                 if (state is SeriesWatchListAdded) {
                                   final isAdded = state.isAdded;
-                                  message = isAdded == false ? "Add to watchlist" : "Remove from watchlist";
-                                }else{
-                                  message = !widget.isAddedWatchlist ? "Add to watchlist" : "Remove from watchlist";
+                                  message = isAdded == false
+                                      ? "Add to watchlist"
+                                      : "Remove from watchlist";
+                                } else {
+                                  message = !widget.isAddedWatchlist
+                                      ? "Add to watchlist"
+                                      : "Remove from watchlist";
                                 }
 
-                                if (message == "Add to watchlist" || message == "Remove from watchlist") {
+                                if (message == "Add to watchlist" ||
+                                    message == "Remove from watchlist") {
                                   ScaffoldMessenger.of(context).showSnackBar(
                                       SnackBar(content: Text(message)));
                                 } else {
@@ -155,7 +167,8 @@ class _DetailContentState extends State<DetailContent> {
                                       });
                                 }
                                 setState(() {
-                                  widget.isAddedWatchlist = !widget.isAddedWatchlist;
+                                  widget.isAddedWatchlist =
+                                      !widget.isAddedWatchlist;
                                 });
                               },
                               child: Row(
@@ -201,7 +214,8 @@ class _DetailContentState extends State<DetailContent> {
                               'Recommendations',
                               style: kHeading6,
                             ),
-                            BlocBuilder<RecommendationSeriesBloc, RecommendationSeriesState>(
+                            BlocBuilder<RecommendationSeriesBloc,
+                                RecommendationSeriesState>(
                               builder: (context, state) {
                                 if (state is RecommendationSeriesLoading) {
                                   return Center(
@@ -209,7 +223,8 @@ class _DetailContentState extends State<DetailContent> {
                                   );
                                 } else if (state is RecommendationSeriesError) {
                                   return Text(state.message);
-                                } else if (state is RecommendationSeriesHasData) {
+                                } else if (state
+                                    is RecommendationSeriesHasData) {
                                   return Container(
                                     height: 150,
                                     child: ListView.builder(
@@ -232,15 +247,15 @@ class _DetailContentState extends State<DetailContent> {
                                               ),
                                               child: CachedNetworkImage(
                                                 imageUrl:
-                                                'https://image.tmdb.org/t/p/w500${series.posterPath}',
+                                                    'https://image.tmdb.org/t/p/w500${series.posterPath}',
                                                 placeholder: (context, url) =>
                                                     Center(
-                                                      child:
+                                                  child:
                                                       CircularProgressIndicator(),
-                                                    ),
+                                                ),
                                                 errorWidget:
                                                     (context, url, error) =>
-                                                    Icon(Icons.error),
+                                                        Icon(Icons.error),
                                               ),
                                             ),
                                           ),

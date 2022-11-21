@@ -1,6 +1,6 @@
 part of 'recommendation_series_bloc.dart';
 
-abstract class RecommendationSeriesState extends Equatable{
+abstract class RecommendationSeriesState extends Equatable {
   const RecommendationSeriesState();
 
   @override
@@ -9,9 +9,9 @@ abstract class RecommendationSeriesState extends Equatable{
 
 class RecommendationSeriesEmpty extends RecommendationSeriesState {}
 
-class RecommendationSeriesLoading extends RecommendationSeriesState{}
+class RecommendationSeriesLoading extends RecommendationSeriesState {}
 
-class RecommendationSeriesError extends RecommendationSeriesState{
+class RecommendationSeriesError extends RecommendationSeriesState {
   final String message;
 
   RecommendationSeriesError(this.message);
@@ -20,7 +20,7 @@ class RecommendationSeriesError extends RecommendationSeriesState{
   List<Object> get props => [message];
 }
 
-class RecommendationSeriesHasData extends RecommendationSeriesState{
+class RecommendationSeriesHasData extends RecommendationSeriesState {
   final List<TvSeries> result;
 
   RecommendationSeriesHasData(this.result);

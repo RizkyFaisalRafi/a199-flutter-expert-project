@@ -15,7 +15,7 @@ void main() {
   late MockGetNowPlayingSeries mockGetNowPlayingSeries;
   late NowPlayingSeriesBloc nowPlayingSeriesBloc;
 
-  setUp((){
+  setUp(() {
     mockGetNowPlayingSeries = MockGetNowPlayingSeries();
     nowPlayingSeriesBloc = NowPlayingSeriesBloc(mockGetNowPlayingSeries);
   });

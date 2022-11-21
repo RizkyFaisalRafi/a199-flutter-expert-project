@@ -1,11 +1,11 @@
-import 'package:http/http.dart' as http;
-
 import 'dart:convert';
 import 'dart:developer';
 import 'dart:io';
 
 import 'package:flutter/services.dart';
+import 'package:http/http.dart' as http;
 import 'package:http/io_client.dart';
+
 class Shared {
   static Future<HttpClient> customeHttpClient({bool isTestMode = false}) async {
     final context = SecurityContext(withTrustedRoots: false);
@@ -51,7 +51,7 @@ class Shared {
 
   static Future<http.Client> createLEClient({bool isTestMode = false}) async {
     IOClient client =
-    IOClient(await Shared.customeHttpClient(isTestMode: isTestMode));
+        IOClient(await Shared.customeHttpClient(isTestMode: isTestMode));
     return client;
   }
 }

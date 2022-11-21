@@ -1,4 +1,3 @@
-
 import 'package:bloc_test/bloc_test.dart';
 import 'package:dartz/dartz.dart';
 import 'package:ditonton/common/failure.dart';
@@ -16,11 +15,10 @@ void main() {
   late PopularSeriesBloc popularBloc;
   late MockGetPopularSeries mockGetPopularSeries;
 
-  setUp((){
+  setUp(() {
     mockGetPopularSeries = MockGetPopularSeries();
     popularBloc = PopularSeriesBloc(mockGetPopularSeries);
   });
-
 
   test('the initial state should be empty', () {
     expect(popularBloc.state, PopularSeriesEmpty());

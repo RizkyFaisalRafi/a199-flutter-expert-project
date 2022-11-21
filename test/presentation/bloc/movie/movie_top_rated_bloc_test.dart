@@ -1,7 +1,6 @@
 import 'package:bloc_test/bloc_test.dart';
 import 'package:dartz/dartz.dart';
 import 'package:ditonton/common/failure.dart';
-import 'package:ditonton/domain/entities/movie.dart';
 import 'package:ditonton/domain/usecases/movies/get_top_rated_movies.dart';
 import 'package:ditonton/presentation/bloc/movie/top_rated/top_rated_bloc.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -12,11 +11,11 @@ import '../../../dummy_data/dummy_objects.dart';
 import 'movie_top_rated_bloc_test.mocks.dart';
 
 @GenerateMocks([GetTopRatedMovies])
-void main(){
+void main() {
   late MockGetTopRatedMovies mockTopRated;
   late TopRatedBloc topRatedBloc;
-  
-  setUp((){
+
+  setUp(() {
     mockTopRated = MockGetTopRatedMovies();
     topRatedBloc = TopRatedBloc(mockTopRated);
   });
@@ -61,8 +60,7 @@ void main(){
   blocTest<TopRatedBloc, TopRatedState>(
     'should emit Loading state and then Empty state when the retrieved data is empty',
     build: () {
-      when(mockTopRated.execute())
-          .thenAnswer((_) async => const Right([]));
+      when(mockTopRated.execute()).thenAnswer((_) async => const Right([]));
       return topRatedBloc;
     },
     act: (bloc) => bloc.add(TopRatedMovie()),
@@ -71,5 +69,4 @@ void main(){
       TopRatedHasData([]),
     ],
   );
-
 }

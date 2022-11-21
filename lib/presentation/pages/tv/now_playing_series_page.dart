@@ -1,10 +1,7 @@
 import 'package:ditonton/presentation/bloc/series/now_playing/now_playing_series_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:provider/provider.dart';
 
-import '../../../common/state_enum.dart';
-import '../../provider/tv/now_playing_series_notifier.dart';
 import '../../widgets/series_card_list.dart';
 
 class NowPlayingSeriesPage extends StatefulWidget {
@@ -21,7 +18,7 @@ class _NowPlayingSeriesPageState extends State<NowPlayingSeriesPage> {
     Future.microtask(() => // ubah
         // Provider.of<NowPlayingSeriesNotifier>(context, listen: false)
         //     .fetchNowPlayingSeries());
-    context.read<NowPlayingSeriesBloc>().add(GetSeriesNowPlaying()));
+        context.read<NowPlayingSeriesBloc>().add(GetSeriesNowPlaying()));
   }
 
   @override
@@ -47,19 +44,18 @@ class _NowPlayingSeriesPageState extends State<NowPlayingSeriesPage> {
                 },
                 itemCount: state.result.length,
               );
-            } else if(state is NowPlayingSeriesError) {
+            } else if (state is NowPlayingSeriesError) {
               return Center(
                 key: Key('error_message'),
                 child: Text(state.message),
               );
-            }else{
+            } else {
               return Center(
                 child: Text('Empty Data'),
               );
             }
           },
         ),
-
       ),
     );
   }

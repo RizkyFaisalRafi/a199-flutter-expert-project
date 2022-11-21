@@ -11,15 +11,14 @@ import '../../../dummy_data/dummy_objects.dart';
 import 'series_top_rated_bloc_test.mocks.dart';
 
 @GenerateMocks([GetTopRatedSeries])
-void main(){
+void main() {
   late MockGetTopRatedSeries mockGetTopRatedSeries;
   late TopRatedSeriesBloc topRatedSeriesBloc;
 
-  setUp((){
+  setUp(() {
     mockGetTopRatedSeries = MockGetTopRatedSeries();
     topRatedSeriesBloc = TopRatedSeriesBloc(mockGetTopRatedSeries);
   });
-
 
   test('the initial state should be empty', () {
     expect(topRatedSeriesBloc.state, TopRatedSeriesEmpty());

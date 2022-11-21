@@ -1,6 +1,6 @@
 part of 'now_playing_bloc.dart';
 
-abstract class NowPlayingState extends Equatable{
+abstract class NowPlayingState extends Equatable {
   const NowPlayingState();
 
   @override
@@ -9,9 +9,9 @@ abstract class NowPlayingState extends Equatable{
 
 class NowPlayingEmpty extends NowPlayingState {}
 
-class NowPlayingLoading extends NowPlayingState{}
+class NowPlayingLoading extends NowPlayingState {}
 
-class NowPlayingError extends NowPlayingState{
+class NowPlayingError extends NowPlayingState {
   final String message;
 
   NowPlayingError(this.message);
@@ -20,7 +20,7 @@ class NowPlayingError extends NowPlayingState{
   List<Object> get props => [message];
 }
 
-class NowPlayingHasData extends NowPlayingState{
+class NowPlayingHasData extends NowPlayingState {
   final List<Movie> result;
 
   NowPlayingHasData(this.result);

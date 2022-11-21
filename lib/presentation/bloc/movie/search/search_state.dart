@@ -1,6 +1,6 @@
 part of 'search_bloc.dart';
 
-abstract class SearchState extends Equatable{
+abstract class SearchState extends Equatable {
   const SearchState();
 
   @override
@@ -9,9 +9,9 @@ abstract class SearchState extends Equatable{
 
 class SearchEmpty extends SearchState {}
 
-class SearchLoading extends SearchState{}
+class SearchLoading extends SearchState {}
 
-class SearchError extends SearchState{
+class SearchError extends SearchState {
   final String message;
 
   SearchError(this.message);
@@ -20,7 +20,7 @@ class SearchError extends SearchState{
   List<Object> get props => [message];
 }
 
-class SearchHasData extends SearchState{
+class SearchHasData extends SearchState {
   final List<Movie> result;
 
   SearchHasData(this.result);

@@ -45,6 +45,7 @@ class MockGetTvSeriesWatchListStatus extends _i1.Mock
   _i2.TvSeriesRepository get repository =>
       (super.noSuchMethod(Invocation.getter(#repository),
           returnValue: _FakeTvSeriesRepository_0()) as _i2.TvSeriesRepository);
+
   @override
   _i5.Future<bool> execute(int? id) =>
       (super.noSuchMethod(Invocation.method(#execute, [id]),
@@ -82,6 +83,7 @@ class MockSaveSeriesWatchlist extends _i1.Mock
   _i2.TvSeriesRepository get repository =>
       (super.noSuchMethod(Invocation.getter(#repository),
           returnValue: _FakeTvSeriesRepository_0()) as _i2.TvSeriesRepository);
+
   @override
   _i5.Future<_i3.Either<_i7.Failure, String>> execute(
           _i10.TvSeriesDetail? series) =>
@@ -104,6 +106,7 @@ class MockRemoveSeriesWatchlist extends _i1.Mock
   _i2.TvSeriesRepository get repository =>
       (super.noSuchMethod(Invocation.getter(#repository),
           returnValue: _FakeTvSeriesRepository_0()) as _i2.TvSeriesRepository);
+
   @override
   _i5.Future<_i3.Either<_i7.Failure, String>> execute(
           _i10.TvSeriesDetail? series) =>

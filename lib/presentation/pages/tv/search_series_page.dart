@@ -1,10 +1,7 @@
 import 'package:ditonton/common/constants.dart';
-import 'package:ditonton/common/state_enum.dart';
-import 'package:ditonton/presentation/provider/tv/series_search_notifier.dart';
 import 'package:ditonton/presentation/widgets/series_card_list.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:provider/provider.dart';
 
 import '../../bloc/series/search/search_series_bloc.dart';
 
@@ -23,8 +20,10 @@ class SearchSeriesPage extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             TextField(
-              onChanged: (query){
-                context.read<SearchSeriesBloc>().add(OnQuerySeriesChanged(query));
+              onChanged: (query) {
+                context
+                    .read<SearchSeriesBloc>()
+                    .add(OnQuerySeriesChanged(query));
               },
               decoration: InputDecoration(
                 hintText: 'Search title',
@@ -38,7 +37,6 @@ class SearchSeriesPage extends StatelessWidget {
               'Search Result',
               style: kHeading6,
             ),
-
             BlocBuilder<SearchSeriesBloc, SearchSeriesState>(
               builder: (context, state) {
                 if (state is SearchSeriesLoading) {
@@ -58,17 +56,17 @@ class SearchSeriesPage extends StatelessWidget {
                     ),
                   );
                 } else if (state is SearchSeriesError) {
-                  return Expanded(child: Center(
+                  return Expanded(
+                      child: Center(
                     child: Text(state.message),
                   ));
-                }else{
+                } else {
                   return Expanded(
                     child: Container(),
                   );
                 }
               },
             ),
-
           ],
         ),
       ),

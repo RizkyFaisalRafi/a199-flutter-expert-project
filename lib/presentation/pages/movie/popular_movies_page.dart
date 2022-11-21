@@ -1,9 +1,6 @@
-import 'package:ditonton/common/state_enum.dart';
-import 'package:ditonton/presentation/provider/movies/popular_movies_notifier.dart';
 import 'package:ditonton/presentation/widgets/movie_card_list.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:provider/provider.dart';
 
 import '../../bloc/movie/popular/popular_bloc.dart';
 
@@ -21,7 +18,7 @@ class _PopularMoviesPageState extends State<PopularMoviesPage> {
     Future.microtask(() =>
         // Provider.of<PopularMoviesNotifier>(context, listen: false)
         //     .fetchPopularMovies());
-    context.read<PopularBloc>().add(GetPopularMovie()));
+        context.read<PopularBloc>().add(GetPopularMovie()));
   }
 
   @override
@@ -32,7 +29,6 @@ class _PopularMoviesPageState extends State<PopularMoviesPage> {
       ),
       body: Padding(
         padding: const EdgeInsets.all(8.0),
-
         child: BlocBuilder<PopularBloc, PopularState>(
           builder: (context, state) {
             if (state is PopularLoading) {
@@ -47,19 +43,18 @@ class _PopularMoviesPageState extends State<PopularMoviesPage> {
                 },
                 itemCount: state.result.length,
               );
-            } else if(state is PopularError) {
+            } else if (state is PopularError) {
               return Center(
                 key: Key('error_message'),
                 child: Text(state.message),
               );
-            }else{
+            } else {
               return Center(
                 child: Text('Empty Data'),
               );
             }
           },
         ),
-
       ),
     );
   }

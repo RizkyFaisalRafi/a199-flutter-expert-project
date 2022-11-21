@@ -1,14 +1,13 @@
 part of 'watchlist_movie_bloc.dart';
 
-abstract class WatchListMovieEvent extends Equatable{}
+abstract class WatchListMovieEvent extends Equatable {}
 
-class GetWatchListMovie extends WatchListMovieEvent{
-
+class GetWatchListMovie extends WatchListMovieEvent {
   @override
   List<Object> get props => [];
 }
 
-class GetWatchListMovieStatus extends WatchListMovieEvent{
+class GetWatchListMovieStatus extends WatchListMovieEvent {
   final int id;
 
   GetWatchListMovieStatus(this.id);
@@ -17,7 +16,7 @@ class GetWatchListMovieStatus extends WatchListMovieEvent{
   List<Object> get props => [id];
 }
 
-class AddMovieToWatchList extends WatchListMovieEvent{
+class AddMovieToWatchList extends WatchListMovieEvent {
   final MovieDetail movieDetail;
 
   AddMovieToWatchList(this.movieDetail);
@@ -26,7 +25,7 @@ class AddMovieToWatchList extends WatchListMovieEvent{
   List<Object> get props => [movieDetail];
 }
 
-class RemoveMovieFromWatchList extends WatchListMovieEvent{
+class RemoveMovieFromWatchList extends WatchListMovieEvent {
   final MovieDetail movieDetail;
 
   RemoveMovieFromWatchList(this.movieDetail);

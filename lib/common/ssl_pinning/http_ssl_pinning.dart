@@ -1,7 +1,7 @@
 import 'package:ditonton/common/ssl_pinning/shared.dart';
 import 'package:http/http.dart' as http;
 
-class HttpSSLPinning{
+class HttpSSLPinning {
   static Future<http.Client> get _instance async =>
       _clientInstance ??= await Shared.createLEClient();
 

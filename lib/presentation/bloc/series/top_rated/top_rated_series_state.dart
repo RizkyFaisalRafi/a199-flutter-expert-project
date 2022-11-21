@@ -1,6 +1,6 @@
 part of 'top_rated_series_bloc.dart';
 
-abstract class TopRatedSeriesState extends Equatable{
+abstract class TopRatedSeriesState extends Equatable {
   const TopRatedSeriesState();
 
   @override
@@ -9,9 +9,9 @@ abstract class TopRatedSeriesState extends Equatable{
 
 class TopRatedSeriesEmpty extends TopRatedSeriesState {}
 
-class TopRatedSeriesLoading extends TopRatedSeriesState{}
+class TopRatedSeriesLoading extends TopRatedSeriesState {}
 
-class TopRatedSeriesError extends TopRatedSeriesState{
+class TopRatedSeriesError extends TopRatedSeriesState {
   final String message;
 
   TopRatedSeriesError(this.message);
@@ -20,7 +20,7 @@ class TopRatedSeriesError extends TopRatedSeriesState{
   List<Object> get props => [message];
 }
 
-class TopRatedSeriesHasData extends TopRatedSeriesState{
+class TopRatedSeriesHasData extends TopRatedSeriesState {
   final List<TvSeries> result;
 
   TopRatedSeriesHasData(this.result);

@@ -3,15 +3,17 @@ buildscript {
     repositories {
         google() // Google's Maven repository
         jcenter()
+        mavenCentral()  // Maven Central repository
     }
 
     dependencies {
         classpath 'com.android.tools.build:gradle:4.1.0'
         // START: FlutterFire Configuration
-        classpath 'com.google.gms:google-services:4.3.13'  // Google Services plug
+        classpath 'com.google.gms:google-services:4.3.14'  // Google Services plug
         // END: FlutterFire Configuration
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
 
+        // Firebase Crashlytics
         classpath 'com.google.firebase:firebase-crashlytics-gradle:2.9.1'
     }
 }
@@ -20,6 +22,7 @@ allprojects {
     repositories {
         google() // Google's Maven repository
         jcenter()
+        mavenCentral()  // Maven Central repository
     }
 }
 

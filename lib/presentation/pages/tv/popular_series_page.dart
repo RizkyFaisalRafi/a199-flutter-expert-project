@@ -1,9 +1,6 @@
-import 'package:ditonton/common/state_enum.dart';
-import 'package:ditonton/presentation/provider/tv/popular_series_notifier.dart';
 import 'package:ditonton/presentation/widgets/series_card_list.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:provider/provider.dart';
 
 import '../../bloc/series/popular/popular_series_bloc.dart';
 
@@ -18,8 +15,8 @@ class _PopularSeriesPageState extends State<PopularSeriesPage> {
   @override
   void initState() {
     super.initState();
-    Future.microtask(() =>
-        context.read<PopularSeriesBloc>().add(GetPopularList()));
+    Future.microtask(
+        () => context.read<PopularSeriesBloc>().add(GetPopularList()));
   }
 
   @override
@@ -30,7 +27,6 @@ class _PopularSeriesPageState extends State<PopularSeriesPage> {
       ),
       body: Padding(
         padding: const EdgeInsets.all(8.0),
-
         child: BlocBuilder<PopularSeriesBloc, PopularSeriesState>(
           builder: (context, state) {
             if (state is PopularSeriesLoading) {
@@ -45,19 +41,18 @@ class _PopularSeriesPageState extends State<PopularSeriesPage> {
                 },
                 itemCount: state.result.length,
               );
-            } else if(state is PopularSeriesError) {
+            } else if (state is PopularSeriesError) {
               return Center(
                 key: Key('error_message'),
                 child: Text(state.message),
               );
-            }else{
+            } else {
               return Center(
                 child: Text('Empty Data'),
               );
             }
           },
         ),
-
       ),
     );
   }

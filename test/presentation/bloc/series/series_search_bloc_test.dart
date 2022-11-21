@@ -17,18 +17,18 @@ void main() {
 
   final tQuery = 'spiderman';
 
-  setUp((){
+  setUp(() {
     mockSearchSeries = MockSearchSeries();
     searchSeriesBloc = SearchSeriesBloc(mockSearchSeries);
   });
 
-  test('initial state should be empty', (){
+  test('initial state should be empty', () {
     expect(searchSeriesBloc.state, SearchSeriesEmpty());
   });
 
   blocTest<SearchSeriesBloc, SearchSeriesState>(
       'Should emit [Loading, HasData] when data is gotten successfully',
-      build: (){
+      build: () {
         when(mockSearchSeries.execute(tQuery))
             .thenAnswer((_) async => Right(testSeriesList));
         return searchSeriesBloc;
@@ -36,30 +36,25 @@ void main() {
       act: (bloc) => bloc.add(OnQuerySeriesChanged(tQuery)),
       wait: const Duration(milliseconds: 500),
       expect: () => [
-        SearchSeriesLoading(),
-        SearchSeriesHasData(testSeriesList),
-      ],
+            SearchSeriesLoading(),
+            SearchSeriesHasData(testSeriesList),
+          ],
       verify: (bloc) {
         verify(mockSearchSeries.execute(tQuery));
-      }
-  );
+      });
 
   blocTest<SearchSeriesBloc, SearchSeriesState>(
       'Should emit [Loading, Error] when get search is unsuccessful',
-      build: (){
+      build: () {
         when(mockSearchSeries.execute(tQuery))
             .thenAnswer((_) async => Left(ServerFailure('Server Failure')));
         return searchSeriesBloc;
       },
       act: (bloc) => bloc.add(OnQuerySeriesChanged(tQuery)),
       wait: const Duration(milliseconds: 500),
-      expect: () => [
-        SearchSeriesLoading(),
-        SearchSeriesError('Server Failure')
-      ],
+      expect: () =>
+          [SearchSeriesLoading(), SearchSeriesError('Server Failure')],
       verify: (bloc) {
         verify(mockSearchSeries.execute(tQuery));
-      }
-  );
-
+      });
 }

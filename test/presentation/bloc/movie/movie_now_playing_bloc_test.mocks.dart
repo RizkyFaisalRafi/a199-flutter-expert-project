@@ -39,6 +39,7 @@ class MockGetNowPlayingMovies extends _i1.Mock
   _i2.MovieRepository get repository =>
       (super.noSuchMethod(Invocation.getter(#repository),
           returnValue: _FakeMovieRepository_0()) as _i2.MovieRepository);
+
   @override
   _i5.Future<_i3.Either<_i6.Failure, List<_i7.Movie>>> execute() =>
       (super.noSuchMethod(Invocation.method(#execute, []),

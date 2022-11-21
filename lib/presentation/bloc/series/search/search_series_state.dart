@@ -1,6 +1,6 @@
 part of 'search_series_bloc.dart';
 
-abstract class SearchSeriesState extends Equatable{
+abstract class SearchSeriesState extends Equatable {
   const SearchSeriesState();
 
   @override
@@ -9,9 +9,9 @@ abstract class SearchSeriesState extends Equatable{
 
 class SearchSeriesEmpty extends SearchSeriesState {}
 
-class SearchSeriesLoading extends SearchSeriesState{}
+class SearchSeriesLoading extends SearchSeriesState {}
 
-class SearchSeriesError extends SearchSeriesState{
+class SearchSeriesError extends SearchSeriesState {
   final String message;
 
   SearchSeriesError(this.message);
@@ -20,7 +20,7 @@ class SearchSeriesError extends SearchSeriesState{
   List<Object> get props => [message];
 }
 
-class SearchSeriesHasData extends SearchSeriesState{
+class SearchSeriesHasData extends SearchSeriesState {
   final List<TvSeries> result;
 
   SearchSeriesHasData(this.result);

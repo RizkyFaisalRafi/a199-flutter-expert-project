@@ -15,9 +15,10 @@ void main() {
   late MockGetSeriesRecommendation mockGetSeriesRecommendation;
   late RecommendationSeriesBloc recommendationSeriesBloc;
 
-  setUp((){
+  setUp(() {
     mockGetSeriesRecommendation = MockGetSeriesRecommendation();
-    recommendationSeriesBloc = RecommendationSeriesBloc(mockGetSeriesRecommendation);
+    recommendationSeriesBloc =
+        RecommendationSeriesBloc(mockGetSeriesRecommendation);
   });
 
   final id = 1;
@@ -72,6 +73,4 @@ void main() {
       RecommendationSeriesHasData([]),
     ],
   );
-
-
 }

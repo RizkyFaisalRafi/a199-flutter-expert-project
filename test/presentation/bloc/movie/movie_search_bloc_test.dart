@@ -10,7 +10,6 @@ import 'package:mockito/mockito.dart';
 import '../../../dummy_data/dummy_objects.dart';
 import '../../provider/movie/movie_search_notifier_test.mocks.dart';
 
-
 @GenerateMocks([SearchMovies])
 void main() {
   late SearchBloc searchBloc;
@@ -18,18 +17,18 @@ void main() {
 
   final tQuery = 'spiderman';
 
-  setUp((){
+  setUp(() {
     mockSearchMovies = MockSearchMovies();
     searchBloc = SearchBloc(mockSearchMovies);
   });
 
-  test('initial state should be empty', (){
+  test('initial state should be empty', () {
     expect(searchBloc.state, SearchEmpty());
   });
 
   blocTest<SearchBloc, SearchState>(
       'Should emit [Loading, HasData] when data is gotten successfully',
-      build: (){
+      build: () {
         when(mockSearchMovies.execute(tQuery))
             .thenAnswer((_) async => Right(testMovieList));
         return searchBloc;
@@ -37,32 +36,24 @@ void main() {
       act: (bloc) => bloc.add(OnQueryChanged(tQuery)),
       wait: const Duration(milliseconds: 500),
       expect: () => [
-        SearchLoading(),
-        SearchHasData(testMovieList),
-      ],
+            SearchLoading(),
+            SearchHasData(testMovieList),
+          ],
       verify: (bloc) {
         verify(mockSearchMovies.execute(tQuery));
-      }
-  );
+      });
 
   blocTest<SearchBloc, SearchState>(
       'Should emit [Loading, Error] when get search is unsuccessful',
-      build: (){
+      build: () {
         when(mockSearchMovies.execute(tQuery))
             .thenAnswer((_) async => Left(ServerFailure('Server Failure')));
         return searchBloc;
       },
       act: (bloc) => bloc.add(OnQueryChanged(tQuery)),
       wait: const Duration(milliseconds: 500),
-      expect: () => [
-        SearchLoading(),
-        SearchError('Server Failure')
-      ],
+      expect: () => [SearchLoading(), SearchError('Server Failure')],
       verify: (bloc) {
         verify(mockSearchMovies.execute(tQuery));
-      }
-  );
-
-
-
+      });
 }

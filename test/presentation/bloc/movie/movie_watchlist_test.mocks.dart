@@ -63,6 +63,7 @@ class MockGetMovieWatchListStatus extends _i1.Mock
   _i3.MovieRepository get repository =>
       (super.noSuchMethod(Invocation.getter(#repository),
           returnValue: _FakeMovieRepository_1()) as _i3.MovieRepository);
+
   @override
   _i5.Future<bool> execute(int? id) =>
       (super.noSuchMethod(Invocation.method(#execute, [id]),
@@ -82,6 +83,7 @@ class MockSaveMovieWatchlist extends _i1.Mock
   _i3.MovieRepository get repository =>
       (super.noSuchMethod(Invocation.getter(#repository),
           returnValue: _FakeMovieRepository_1()) as _i3.MovieRepository);
+
   @override
   _i5.Future<_i2.Either<_i6.Failure, String>> execute(
           _i10.MovieDetail? movie) =>
@@ -104,6 +106,7 @@ class MockRemoveMovieWatchlist extends _i1.Mock
   _i3.MovieRepository get repository =>
       (super.noSuchMethod(Invocation.getter(#repository),
           returnValue: _FakeMovieRepository_1()) as _i3.MovieRepository);
+
   @override
   _i5.Future<_i2.Either<_i6.Failure, String>> execute(
           _i10.MovieDetail? movie) =>

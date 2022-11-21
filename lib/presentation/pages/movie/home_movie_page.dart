@@ -1,6 +1,5 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:ditonton/common/constants.dart';
-import 'package:ditonton/common/state_enum.dart';
 import 'package:ditonton/domain/entities/movie.dart';
 import 'package:ditonton/presentation/pages/about_page.dart';
 import 'package:ditonton/presentation/pages/movie/movie_detail_page.dart';
@@ -11,11 +10,8 @@ import 'package:ditonton/presentation/pages/movie/top_rated_movies_page.dart';
 import 'package:ditonton/presentation/pages/movie/watchlist_movies_page.dart';
 import 'package:ditonton/presentation/pages/tv/home_series_page.dart';
 import 'package:ditonton/presentation/pages/tv/watchlist_series_page.dart';
-import 'package:ditonton/presentation/provider/movies/movie_list_notifier.dart';
-import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:provider/provider.dart';
 
 import '../../bloc/movie/now_playing/now_playing_bloc.dart';
 import '../../bloc/movie/popular/popular_bloc.dart';
@@ -95,7 +91,7 @@ class _HomeMoviePageState extends State<HomeMoviePage> {
         actions: [
           IconButton(
             onPressed: () {
-              FirebaseCrashlytics.instance.crash(); // Test FirebaseCrashlytics
+              // FirebaseCrashlytics.instance.crash(); // Test FirebaseCrashlytics
               Navigator.pushNamed(context, SearchMoviePage.ROUTE_NAME);
             },
             icon: Icon(Icons.search),
@@ -114,9 +110,8 @@ class _HomeMoviePageState extends State<HomeMoviePage> {
                 onTap: () => Navigator.pushNamed(
                     context, NowPlayingMoviesPage.ROUTE_NAME),
               ),
-
-
-              BlocBuilder<NowPlayingBloc, NowPlayingState>(builder: (context, state) {
+              BlocBuilder<NowPlayingBloc, NowPlayingState>(
+                  builder: (context, state) {
                 if (state is NowPlayingLoading) {
                   return Center(
                     child: CircularProgressIndicator(),
@@ -132,7 +127,6 @@ class _HomeMoviePageState extends State<HomeMoviePage> {
                 onTap: () =>
                     Navigator.pushNamed(context, PopularMoviesPage.ROUTE_NAME),
               ),
-
               BlocBuilder<PopularBloc, PopularState>(builder: (context, state) {
                 if (state is PopularLoading) {
                   return Center(
@@ -149,8 +143,8 @@ class _HomeMoviePageState extends State<HomeMoviePage> {
                 onTap: () =>
                     Navigator.pushNamed(context, TopRatedMoviesPage.ROUTE_NAME),
               ),
-
-              BlocBuilder<TopRatedBloc, TopRatedState>(builder: (context, state) {
+              BlocBuilder<TopRatedBloc, TopRatedState>(
+                  builder: (context, state) {
                 if (state is TopRatedLoading) {
                   return Center(
                     child: CircularProgressIndicator(),
@@ -161,7 +155,6 @@ class _HomeMoviePageState extends State<HomeMoviePage> {
                   return Text('Failed');
                 }
               }),
-
             ],
           ),
         ),

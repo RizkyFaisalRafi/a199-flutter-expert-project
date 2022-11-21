@@ -1,10 +1,7 @@
 import 'package:ditonton/common/constants.dart';
-import 'package:ditonton/common/state_enum.dart';
-import 'package:ditonton/presentation/provider/movies/movie_search_notifier.dart';
 import 'package:ditonton/presentation/widgets/movie_card_list.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:provider/provider.dart';
 
 import '../../bloc/movie/search/search_bloc.dart';
 
@@ -40,7 +37,6 @@ class SearchMoviePage extends StatelessWidget {
               'Search Result',
               style: kHeading6,
             ),
-
             BlocBuilder<SearchBloc, SearchState>(
               builder: (context, state) {
                 if (state is SearchLoading) {
@@ -60,18 +56,17 @@ class SearchMoviePage extends StatelessWidget {
                     ),
                   );
                 } else if (state is SearchError) {
-                  return Expanded(child: Center(
+                  return Expanded(
+                      child: Center(
                     child: Text(state.message),
                   ));
-                }else{
+                } else {
                   return Expanded(
                     child: Container(),
                   );
                 }
               },
             ),
-
-
           ],
         ),
       ),

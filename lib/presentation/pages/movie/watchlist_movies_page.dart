@@ -1,10 +1,7 @@
-import 'package:ditonton/common/state_enum.dart';
 import 'package:ditonton/common/utils.dart';
-import 'package:ditonton/presentation/provider/movies/watchlist_movie_notifier.dart';
 import 'package:ditonton/presentation/widgets/movie_card_list.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:provider/provider.dart';
 
 import '../../bloc/movie/watchlist/watchlist_movie_bloc.dart';
 
@@ -34,7 +31,7 @@ class _WatchlistMoviesPageState extends State<WatchlistMoviesPage>
 
   void didPopNext() {
     Future.microtask(
-            () => context.read<WatchListMovieBloc>().add(GetWatchListMovie()));
+        () => context.read<WatchListMovieBloc>().add(GetWatchListMovie()));
   }
 
   @override
@@ -45,7 +42,6 @@ class _WatchlistMoviesPageState extends State<WatchlistMoviesPage>
       ),
       body: Padding(
         padding: const EdgeInsets.all(8.0),
-
         child: BlocBuilder<WatchListMovieBloc, WatchListMovieState>(
           builder: (context, state) {
             if (state is WatchListMovieLoading) {
@@ -60,19 +56,18 @@ class _WatchlistMoviesPageState extends State<WatchlistMoviesPage>
                 },
                 itemCount: state.result.length,
               );
-            } else if(state is WatchListMovieError) {
+            } else if (state is WatchListMovieError) {
               return Center(
                 key: Key('error_message'),
                 child: Text(state.message),
               );
-            }else{
+            } else {
               return Center(
                 child: Text('Empty Data'),
               );
             }
           },
         ),
-
       ),
     );
   }

@@ -15,7 +15,7 @@ void main() {
   late NowPlayingBloc nowPlayingBloc;
   late MockGetNowPlayingMovies mockGetNowPlayingMovies;
 
-  setUp((){
+  setUp(() {
     mockGetNowPlayingMovies = MockGetNowPlayingMovies();
     nowPlayingBloc = NowPlayingBloc(mockGetNowPlayingMovies);
   });
@@ -70,6 +70,4 @@ void main() {
       NowPlayingHasData([]),
     ],
   );
-
-
 }

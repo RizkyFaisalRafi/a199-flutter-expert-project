@@ -1,6 +1,5 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:ditonton/common/constants.dart';
-import 'package:ditonton/common/state_enum.dart';
 import 'package:ditonton/domain/entities/series.dart';
 import 'package:ditonton/presentation/pages/about_page.dart';
 import 'package:ditonton/presentation/pages/movie/home_movie_page.dart';
@@ -10,10 +9,8 @@ import 'package:ditonton/presentation/pages/tv/search_series_page.dart';
 import 'package:ditonton/presentation/pages/tv/series_detail_page.dart';
 import 'package:ditonton/presentation/pages/tv/top_rated_series_page.dart';
 import 'package:ditonton/presentation/pages/tv/watchlist_series_page.dart';
-import 'package:ditonton/presentation/provider/tv/tv_list_notifier.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:provider/provider.dart';
 
 import '../../bloc/series/now_playing/now_playing_series_bloc.dart';
 import '../../bloc/series/popular/popular_series_bloc.dart';
@@ -115,16 +112,16 @@ class _HomeSeriesPageState extends State<HomeSeriesPage> {
 
               BlocBuilder<NowPlayingSeriesBloc, NowPlayingSeriesState>(
                   builder: (context, state) {
-                    if (state is NowPlayingSeriesLoading) {
-                      return Center(
-                        child: CircularProgressIndicator(),
-                      );
-                    } else if (state is NowPlayingSeriesHasData) {
-                      return SeriesList(state.result);
-                    } else {
-                      return Text('Failed');
-                    }
-                  }),
+                if (state is NowPlayingSeriesLoading) {
+                  return Center(
+                    child: CircularProgressIndicator(),
+                  );
+                } else if (state is NowPlayingSeriesHasData) {
+                  return SeriesList(state.result);
+                } else {
+                  return Text('Failed');
+                }
+              }),
 
               // Popular
               _buildSubHeading(
@@ -134,16 +131,16 @@ class _HomeSeriesPageState extends State<HomeSeriesPage> {
               ),
               BlocBuilder<PopularSeriesBloc, PopularSeriesState>(
                   builder: (context, state) {
-                    if (state is PopularSeriesLoading) {
-                      return Center(
-                        child: CircularProgressIndicator(),
-                      );
-                    } else if (state is PopularSeriesHasData) {
-                      return SeriesList(state.result);
-                    } else {
-                      return Text('Failed');
-                    }
-                  }),
+                if (state is PopularSeriesLoading) {
+                  return Center(
+                    child: CircularProgressIndicator(),
+                  );
+                } else if (state is PopularSeriesHasData) {
+                  return SeriesList(state.result);
+                } else {
+                  return Text('Failed');
+                }
+              }),
 
               // Top Rated
               _buildSubHeading(
@@ -153,16 +150,16 @@ class _HomeSeriesPageState extends State<HomeSeriesPage> {
               ),
               BlocBuilder<TopRatedSeriesBloc, TopRatedSeriesState>(
                   builder: (context, state) {
-                    if (state is TopRatedSeriesLoading) {
-                      return Center(
-                        child: CircularProgressIndicator(),
-                      );
-                    } else if (state is TopRatedSeriesHasData) {
-                      return SeriesList(state.result);
-                    } else {
-                      return Text('Failed');
-                    }
-                  }),
+                if (state is TopRatedSeriesLoading) {
+                  return Center(
+                    child: CircularProgressIndicator(),
+                  );
+                } else if (state is TopRatedSeriesHasData) {
+                  return SeriesList(state.result);
+                } else {
+                  return Text('Failed');
+                }
+              }),
             ],
           ),
         ),

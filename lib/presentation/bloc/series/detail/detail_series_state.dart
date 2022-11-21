@@ -1,6 +1,6 @@
 part of 'detail_series_bloc.dart';
 
-abstract class DetailSeriesState extends Equatable{
+abstract class DetailSeriesState extends Equatable {
   const DetailSeriesState();
 
   @override
@@ -9,9 +9,9 @@ abstract class DetailSeriesState extends Equatable{
 
 class DetailSeriesEmpty extends DetailSeriesState {}
 
-class DetailSeriesLoading extends DetailSeriesState{}
+class DetailSeriesLoading extends DetailSeriesState {}
 
-class DetailSeriesError extends DetailSeriesState{
+class DetailSeriesError extends DetailSeriesState {
   final String message;
 
   DetailSeriesError(this.message);
@@ -20,7 +20,7 @@ class DetailSeriesError extends DetailSeriesState{
   List<Object> get props => [message];
 }
 
-class DetailSeriesHasData extends DetailSeriesState{
+class DetailSeriesHasData extends DetailSeriesState {
   final TvSeriesDetail result;
 
   DetailSeriesHasData(this.result);

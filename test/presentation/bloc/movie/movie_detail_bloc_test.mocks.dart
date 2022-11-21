@@ -37,6 +37,7 @@ class MockGetMovieDetail extends _i1.Mock implements _i4.GetMovieDetail {
   _i2.MovieRepository get repository =>
       (super.noSuchMethod(Invocation.getter(#repository),
           returnValue: _FakeMovieRepository_0()) as _i2.MovieRepository);
+
   @override
   _i5.Future<_i3.Either<_i6.Failure, _i7.MovieDetail>> execute(int? id) =>
       (super.noSuchMethod(Invocation.method(#execute, [id]),

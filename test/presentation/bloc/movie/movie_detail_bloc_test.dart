@@ -15,7 +15,7 @@ void main() {
   late MockGetMovieDetail mockGetDetailMovie;
   late DetailMovieBloc detailMovieBloc;
 
-  setUp((){
+  setUp(() {
     mockGetDetailMovie = MockGetMovieDetail();
     detailMovieBloc = DetailMovieBloc(mockGetDetailMovie);
   });

@@ -6,19 +6,23 @@ import 'package:ditonton/domain/usecases/movies/get_watchlist_movies.dart';
 import 'package:ditonton/domain/usecases/movies/get_watchlist_movies_status.dart';
 import 'package:ditonton/domain/usecases/movies/remove_watchlist_movies.dart';
 import 'package:ditonton/domain/usecases/movies/save_watchlist_movies.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:equatable/equatable.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 part 'watchlist_movie_event.dart';
+
 part 'watchlist_movie_state.dart';
 
-class WatchListMovieBloc extends Bloc<WatchListMovieEvent, WatchListMovieState>{
+class WatchListMovieBloc
+    extends Bloc<WatchListMovieEvent, WatchListMovieState> {
   final GetWatchlistMovies _watchlistMovies;
   final GetMovieWatchListStatus _movieWatchListStatus;
   final SaveMovieWatchlist _addMovieWatchList;
   final RemoveMovieWatchlist _removeMovieWatchlist;
 
-  WatchListMovieBloc(this._watchlistMovies, this._movieWatchListStatus, this._addMovieWatchList, this._removeMovieWatchlist) : super(WatchListMovieEmpty()){
+  WatchListMovieBloc(this._watchlistMovies, this._movieWatchListStatus,
+      this._addMovieWatchList, this._removeMovieWatchlist)
+      : super(WatchListMovieEmpty()) {
     on<GetWatchListMovie>(_getMovieWatchList);
     on<GetWatchListMovieStatus>(_getMovieWatchListStatus);
     on<AddMovieToWatchList>(_movieWatchListAdd);
@@ -58,8 +62,8 @@ class WatchListMovieBloc extends Bloc<WatchListMovieEvent, WatchListMovieState>{
     });
   }
 
-  FutureOr<void> _movieWatchListRemove(
-      RemoveMovieFromWatchList event, Emitter<WatchListMovieState> state) async {
+  FutureOr<void> _movieWatchListRemove(RemoveMovieFromWatchList event,
+      Emitter<WatchListMovieState> state) async {
     final movie = event.movieDetail;
     final result = await _removeMovieWatchlist.execute(movie);
     result.fold((failure) {

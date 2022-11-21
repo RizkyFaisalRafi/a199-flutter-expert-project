@@ -1,9 +1,6 @@
-import 'package:ditonton/common/state_enum.dart';
-import 'package:ditonton/presentation/provider/movies/top_rated_movies_notifier.dart';
 import 'package:ditonton/presentation/widgets/movie_card_list.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:provider/provider.dart';
 
 import '../../bloc/movie/top_rated/top_rated_bloc.dart';
 
@@ -18,8 +15,7 @@ class _TopRatedMoviesPageState extends State<TopRatedMoviesPage> {
   @override
   void initState() {
     super.initState();
-    Future.microtask(() =>
-        context.read<TopRatedBloc>().add(TopRatedMovie()));
+    Future.microtask(() => context.read<TopRatedBloc>().add(TopRatedMovie()));
   }
 
   @override
@@ -30,7 +26,6 @@ class _TopRatedMoviesPageState extends State<TopRatedMoviesPage> {
       ),
       body: Padding(
         padding: const EdgeInsets.all(8.0),
-
         child: BlocBuilder<TopRatedBloc, TopRatedState>(
           builder: (context, state) {
             if (state is TopRatedLoading) {
@@ -45,19 +40,18 @@ class _TopRatedMoviesPageState extends State<TopRatedMoviesPage> {
                 },
                 itemCount: state.result.length,
               );
-            } else if(state is TopRatedError) {
+            } else if (state is TopRatedError) {
               return Center(
                 key: Key('error_message'),
                 child: Text(state.message),
               );
-            }else{
+            } else {
               return Center(
                 child: Text('Empty Data'),
               );
             }
           },
         ),
-
       ),
     );
   }

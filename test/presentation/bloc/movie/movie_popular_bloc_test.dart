@@ -15,11 +15,10 @@ void main() {
   late PopularBloc popularBloc;
   late MockGetPopularMovies mockGetPopularMovies;
 
-  setUp((){
+  setUp(() {
     mockGetPopularMovies = MockGetPopularMovies();
     popularBloc = PopularBloc(mockGetPopularMovies);
   });
-
 
   test('the initial state should be empty', () {
     expect(popularBloc.state, PopularEmpty());
@@ -71,5 +70,4 @@ void main() {
       PopularHasData([]),
     ],
   );
-
 }

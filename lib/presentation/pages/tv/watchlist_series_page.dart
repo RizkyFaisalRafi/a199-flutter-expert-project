@@ -1,10 +1,7 @@
-import 'package:ditonton/common/state_enum.dart';
 import 'package:ditonton/common/utils.dart';
-import 'package:ditonton/presentation/provider/tv/watchlist_series_notifier.dart';
 import 'package:ditonton/presentation/widgets/series_card_list.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:provider/provider.dart';
 
 import '../../bloc/series/watchlist/watchlist_series_bloc.dart';
 
@@ -20,8 +17,8 @@ class _WatchlistSeriesPageState extends State<WatchlistSeriesPage>
   @override
   void initState() {
     super.initState();
-    Future.microtask(() =>
-        context.read<WatchListSeriesBloc>().add(GetWatchListSeries()));
+    Future.microtask(
+        () => context.read<WatchListSeriesBloc>().add(GetWatchListSeries()));
   }
 
   @override
@@ -32,7 +29,7 @@ class _WatchlistSeriesPageState extends State<WatchlistSeriesPage>
 
   void didPopNext() {
     Future.microtask(
-            () => context.read<WatchListSeriesBloc>().add(GetWatchListSeries()));
+        () => context.read<WatchListSeriesBloc>().add(GetWatchListSeries()));
   }
 
   @override
@@ -43,7 +40,6 @@ class _WatchlistSeriesPageState extends State<WatchlistSeriesPage>
       ),
       body: Padding(
         padding: const EdgeInsets.all(8.0),
-
         child: BlocBuilder<WatchListSeriesBloc, WatchListSeriesState>(
           builder: (context, state) {
             if (state is WatchListSeriesLoading) {
@@ -58,19 +54,18 @@ class _WatchlistSeriesPageState extends State<WatchlistSeriesPage>
                 },
                 itemCount: state.result.length,
               );
-            } else if(state is WatchListSeriesError) {
+            } else if (state is WatchListSeriesError) {
               return Center(
                 key: Key('error_message'),
                 child: Text(state.message),
               );
-            }else{
+            } else {
               return Center(
                 child: Text('Empty Data'),
               );
             }
           },
         ),
-
       ),
     );
   }

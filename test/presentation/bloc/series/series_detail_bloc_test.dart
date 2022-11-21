@@ -15,7 +15,7 @@ void main() {
   late MockGetSeriesDetail mockGetSeriesDetail;
   late DetailSeriesBloc detailSeriesBloc;
 
-  setUp((){
+  setUp(() {
     mockGetSeriesDetail = MockGetSeriesDetail();
     detailSeriesBloc = DetailSeriesBloc(mockGetSeriesDetail);
   });

@@ -15,9 +15,10 @@ void main() {
   late MockGetMovieRecommendations mockGetMovieRecommendations;
   late RecommendationMovieBloc recommendationMovieBloc;
 
-  setUp((){
+  setUp(() {
     mockGetMovieRecommendations = MockGetMovieRecommendations();
-    recommendationMovieBloc = RecommendationMovieBloc(mockGetMovieRecommendations);
+    recommendationMovieBloc =
+        RecommendationMovieBloc(mockGetMovieRecommendations);
   });
 
   final id = 1;
@@ -72,6 +73,4 @@ void main() {
       RecommendationMovieHasData([]),
     ],
   );
-
-
 }
