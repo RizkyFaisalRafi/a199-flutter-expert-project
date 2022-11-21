@@ -47,30 +47,30 @@ class DefaultFirebaseOptions {
   }
 
   static const FirebaseOptions web = FirebaseOptions(
-    apiKey: 'AIzaSyCuEl1s0qKruvdsnzdidTZesahK35_gesk',
-    appId: '1:709499197487:web:e5450a8ea2096a79e40eda',
-    messagingSenderId: '709499197487',
-    projectId: 'ditonton-cca14',
-    authDomain: 'ditonton-cca14.firebaseapp.com',
-    storageBucket: 'ditonton-cca14.appspot.com',
-    measurementId: 'G-RNBG994N22',
+    apiKey: 'AIzaSyBeRhfdrIYgVdwOQPaE4KB8z0sRTLVgpsk',
+    appId: '1:901200470447:web:6092599e0cccc4e6114f5a',
+    messagingSenderId: '901200470447',
+    projectId: 'ditonton-87eff',
+    authDomain: 'ditonton-87eff.firebaseapp.com',
+    storageBucket: 'ditonton-87eff.appspot.com',
+    measurementId: 'G-E2J0PRTGQR',
   );
 
   static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'AIzaSyDF6mcdKJmah-vJ8g9jzRH7HLo4R19nEIE',
-    appId: '1:709499197487:android:69131187db9a24dee40eda',
-    messagingSenderId: '709499197487',
-    projectId: 'ditonton-cca14',
-    storageBucket: 'ditonton-cca14.appspot.com',
+    apiKey: 'AIzaSyC3eDOS1xsbwQWZy1Sg5i5PngGW6HyNBO8',
+    appId: '1:901200470447:android:73b0006b0157d32b114f5a',
+    messagingSenderId: '901200470447',
+    projectId: 'ditonton-87eff',
+    storageBucket: 'ditonton-87eff.appspot.com',
   );
 
   static const FirebaseOptions ios = FirebaseOptions(
-    apiKey: 'AIzaSyBta3-XJ4Pc4a1EunVYNbMmPOq8PXBD7b8',
-    appId: '1:709499197487:ios:603a8a587ea76fc1e40eda',
-    messagingSenderId: '709499197487',
-    projectId: 'ditonton-cca14',
-    storageBucket: 'ditonton-cca14.appspot.com',
-    iosClientId: '709499197487-9kt6qnnqrfmkmnjqar74vkr5c9p0tbp1.apps.googleusercontent.com',
+    apiKey: 'AIzaSyAYbYh9V_8bR7Je-eI6UFHwD_WHOBjitm8',
+    appId: '1:901200470447:ios:0872eb5852899048114f5a',
+    messagingSenderId: '901200470447',
+    projectId: 'ditonton-87eff',
+    storageBucket: 'ditonton-87eff.appspot.com',
+    iosClientId: '901200470447-3mcih3hpe3rl3ih7p23bufbhv647s52d.apps.googleusercontent.com',
     iosBundleId: 'com.dicoding.ditonton',
   );
 }
